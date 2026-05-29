@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects — My Digital Space</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;500;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<style>
+  .filter-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 32px; }
+  .filter-btn {
+    font-family: var(--mono); font-size: 11px;
+    padding: 4px 12px; border-radius: 20px;
+    border: 1px solid var(--border);
+    background: transparent; color: var(--muted);
+    cursor: pointer; transition: all .15s;
+  }
+  .filter-btn:hover { border-color: var(--border-h); color: var(--text); }
+  .filter-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  .proj-card.hidden { display: none; }
+
+  /* status colors */
+  .status-active  { color: var(--green); }
+  .status-paused  { color: var(--amber); }
+  .status-shipped { color: #9b94ff; }
+  .status-idea    { color: var(--dim); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-home" href="../index.html">my<span>space</span></a>
+    <a href="../journals/index.html">Journals</a>
+    <a href="index.html" class="active">Projects</a>
+    <a href="../media/index.html">Media</a>
+    <a href="../media/index.html#pdfs">PDFs</a>
+  </div>
+</nav>
+
+<div class="page">
+  <div class="sec-label">Things I'm building</div>
+  <h1 class="page-title">Projects &amp; <span>Experiments</span></h1>
+  <p class="page-sub">
+    Active builds, shipped things, and ideas waiting for time.
+    Filter by status. Add a new project by duplicating a <code style="font-family:var(--mono);color:var(--accent);font-size:13px">.proj-card</code> block.
+  </p>
+
+  <div class="filter-row">
+    <button class="filter-btn active" onclick="setFilter('all',this)">All</button>
+    <button class="filter-btn" onclick="setFilter('active',this)">🟢 Active</button>
+    <button class="filter-btn" onclick="setFilter('shipped',this)">🟣 Shipped</button>
+    <button class="filter-btn" onclick="setFilter('paused',this)">🟡 Paused</button>
+    <button class="filter-btn" onclick="setFilter('idea',this)">⚪ Idea</button>
+  </div>
+
+  <!-- ═══ ADD PROJECTS BELOW — duplicate a .proj-card block ═══ -->
+
+  <div class="proj-card fade-up" data-status="active">
+    <div class="proj-status status-active">● Active</div>
+    <div class="proj-title">Anomaly detection for CNC vibration sensors</div>
+    <div class="proj-desc">
+      Unsupervised autoencoder trained on 6 months of "normal" run data from a
+      manufacturing client. Flags reconstruction error above 2σ. Current phase:
+      interpolating sensor data to a common 100Hz grid before training.
+    </div>
+    <div class="proj-footer">
+      <span class="tag tag-accent">PyTorch</span>
+      <span class="tag">Python</span>
+      <span class="tag">Time-series</span>
+      <span class="tag tag-amber">Freelance</span>
+      <!-- <a class="proj-link" href="https://github.com/you/project" target="_blank">github →</a> -->
+    </div>
+  </div>
+
+  <div class="proj-card fade-up delay-1" data-status="active">
+    <div class="proj-status status-active">● Active</div>
+    <div class="proj-title">This digital garden (site itself)</div>
+    <div class="proj-desc">
+      Static site hosted on Cloudflare Pages. No framework, no build step —
+      just HTML, CSS, and a little vanilla JS. Goal: something I can maintain
+      for years without dependency rot.
+    </div>
+    <div class="proj-footer">
+      <span class="tag">HTML</span>
+      <span class="tag">CSS</span>
+      <span class="tag">Cloudflare Pages</span>
+      <a class="proj-link" href="../index.html">live →</a>
+    </div>
+  </div>
+
+  <div class="proj-card fade-up delay-2" data-status="shipped">
+    <div class="proj-status status-shipped">● Shipped</div>
+    <div class="proj-title">R&amp;D Freelancer Problem Compendium</div>
+    <div class="proj-desc">
+      42 high-value technical problems across 10 sectors — filterable, searchable,
+      with public datasets and tech stacks. Built as a single HTML file.
+      Deployed and shared with the community.
+    </div>
+    <div class="proj-footer">
+      <span class="tag">HTML</span>
+      <span class="tag">Vanilla JS</span>
+      <!-- <a class="proj-link" href="#" target="_blank">view →</a> -->
+    </div>
+  </div>
+
+  <div class="proj-card fade-up delay-3" data-status="paused">
+    <div class="proj-status status-paused">● Paused</div>
+    <div class="proj-title">LiDAR SLAM on Jetson Orin — indoor mapping</div>
+    <div class="proj-desc">
+      Getting LIO-SAM under 100ms loop closure on Jetson Orin NX.
+      Paused while waiting for hardware with better IMU.
+      Next step: test voxel grid downsampling on staircase environment.
+    </div>
+    <div class="proj-footer">
+      <span class="tag">ROS2</span>
+      <span class="tag">C++</span>
+      <span class="tag">Jetson</span>
+    </div>
+  </div>
+
+  <div class="proj-card fade-up delay-4" data-status="idea">
+    <div class="proj-status status-idea">◌ Idea</div>
+    <div class="proj-title">Personal knowledge base with local LLM search</div>
+    <div class="proj-desc">
+      A local-first semantic search over my own notes, PDFs and code snippets
+      using a quantized Mistral model. No cloud, no subscriptions — all on-device.
+      Concept stage; need to evaluate Ollama + ChromaDB combo.
+    </div>
+    <div class="proj-footer">
+      <span class="tag">Ollama</span>
+      <span class="tag">ChromaDB</span>
+      <span class="tag">Python</span>
+      <span class="tag tag-accent">Next</span>
+    </div>
+  </div>
+
+  <!-- ═══ END PROJECTS ═══ -->
+
+</div>
+
+<footer>
+  my digital space · projects
+</footer>
+
+<script>
+let current = 'all';
+function setFilter(s, btn) {
+  current = s;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.proj-card').forEach(c => {
+    c.classList.toggle('hidden', current !== 'all' && c.dataset.status !== current);
+  });
+}
+</script>
+</body>
+</html>

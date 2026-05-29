@@ -3,555 +3,206 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>R&D Freelancer Compendium — 42 High-Value Problems</title>
+<title>Kartik's Space</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;500;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 <style>
-  :root {
-    --bg: #0a0a0f;
-    --surface: #111118;
-    --surface2: #18181f;
-    --border: rgba(255,255,255,0.07);
-    --border-hover: rgba(255,255,255,0.14);
-    --text: #e8e8f0;
-    --text-muted: #7a7a8a;
-    --text-dim: #45454f;
-    --accent: #6c63ff;
-    --accent-glow: rgba(108,99,255,0.15);
-    --green: #00d97e;
-    --amber: #f5a623;
-    --red: #ff5c5c;
-    --purple: #b57bee;
-    --teal: #00c9b1;
-    --mono: 'DM Mono', monospace;
-    --display: 'Syne', sans-serif;
-    --body: 'DM Sans', sans-serif;
+  /* ── HERO ── */
+  .hero {
+    min-height: calc(100vh - 52px);
+    display: flex; flex-direction: column;
+    justify-content: center;
+    padding: 80px 40px 100px;
+    max-width: 1100px; margin: 0 auto;
+    position: relative; z-index: 10;
   }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--body);
-    font-size: 15px;
-    line-height: 1.6;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-
-  body::before {
-    content: '';
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background:
-      radial-gradient(ellipse 60% 40% at 15% 10%, rgba(108,99,255,0.08) 0%, transparent 70%),
-      radial-gradient(ellipse 40% 50% at 85% 80%, rgba(0,201,177,0.05) 0%, transparent 70%);
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* HEADER */
-  header {
-    position: relative;
-    z-index: 10;
-    padding: 72px 40px 48px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .header-label {
+  .hero-eyebrow {
     font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: .15em;
-    color: var(--accent);
-    text-transform: uppercase;
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    font-size: 11px; letter-spacing: .2em;
+    color: var(--accent); text-transform: uppercase;
+    margin-bottom: 24px;
+    display: flex; align-items: center; gap: 10px;
   }
-  .header-label::before {
-    content: '';
-    display: inline-block;
-    width: 20px;
-    height: 1px;
-    background: var(--accent);
+  .hero-eyebrow::before {
+    content: ''; width: 24px; height: 1px; background: var(--accent);
   }
-
-  h1 {
+  .hero h1 {
     font-family: var(--display);
-    font-size: clamp(36px, 5vw, 64px);
-    font-weight: 800;
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    color: var(--text);
-    margin-bottom: 20px;
+    font-size: clamp(44px, 7vw, 88px);
+    font-weight: 800; line-height: 1.0;
+    letter-spacing: -0.03em;
+    margin-bottom: 28px;
   }
-  h1 span { color: var(--accent); }
-
-  .header-sub {
-    font-size: 16px;
-    color: var(--text-muted);
-    max-width: 520px;
-    font-weight: 300;
-    line-height: 1.7;
-    margin-bottom: 40px;
+  .hero h1 .name { color: var(--accent); display: block; }
+  .hero-desc {
+    font-size: 17px; color: var(--muted); font-weight: 300;
+    max-width: 480px; line-height: 1.75;
+    margin-bottom: 56px;
   }
 
-  .header-stats {
-    display: flex;
-    gap: 32px;
-    flex-wrap: wrap;
-  }
-  .hstat {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-  .hstat-num {
-    font-family: var(--display);
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--text);
-  }
-  .hstat-label {
-    font-size: 11px;
-    font-family: var(--mono);
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: .1em;
-  }
-
-  /* CONTROLS */
-  .controls-wrap {
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    background: rgba(10,10,15,0.85);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border);
-    padding: 16px 40px;
-  }
-  .controls-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  .search-row {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-  }
-  .search-box {
-    flex: 1;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    color: var(--text);
-    font-family: var(--body);
-    font-size: 14px;
-    padding: 9px 14px;
-    outline: none;
-    transition: border-color .2s;
-    max-width: 400px;
-  }
-  .search-box::placeholder { color: var(--text-dim); }
-  .search-box:focus { border-color: var(--accent); }
-
-  .count-badge {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--text-muted);
-    white-space: nowrap;
-  }
-  .count-badge strong { color: var(--text); }
-
-  .filter-row {
-    display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
-  }
-  .filter-btn {
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: .05em;
-    padding: 4px 12px;
-    border-radius: 20px;
-    border: 1px solid var(--border);
-    background: transparent;
-    color: var(--text-muted);
-    cursor: pointer;
-    transition: all .15s;
-    white-space: nowrap;
-  }
-  .filter-btn:hover { border-color: var(--border-hover); color: var(--text); }
-  .filter-btn.active {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: #fff;
-  }
-
-  /* MAIN */
-  main {
-    position: relative;
-    z-index: 10;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 32px 40px 80px;
-  }
-
-  .diff-section { margin-bottom: 40px; }
-
-  .diff-heading {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 16px;
-  }
-  .diff-heading-label {
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-  }
-  .diff-heading-line {
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-  }
-  .diff-dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-
-  .grid {
+  /* ── SECTION CARDS ── */
+  .sections-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 12px;
+    max-width: 1100px;
+    margin: 0 40px;
+    position: relative; z-index: 10;
   }
-
-  /* CARD */
-  .card {
+  .sec-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 20px 22px;
-    cursor: pointer;
-    transition: border-color .2s, background .2s, transform .15s;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    text-decoration: none;
-    position: relative;
-    overflow: hidden;
+    border-radius: 14px;
+    padding: 24px;
+    text-decoration: none; color: var(--text);
+    display: flex; flex-direction: column; gap: 12px;
+    transition: border-color .2s, background .2s, transform .2s;
+    position: relative; overflow: hidden;
   }
-  .card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: transparent;
-    transition: background .2s;
-  }
-  .card:hover {
-    border-color: var(--border-hover);
+  .sec-card:hover {
+    border-color: var(--border-h);
     background: var(--surface2);
-    transform: translateY(-1px);
+    transform: translateY(-3px);
   }
-  .card:hover::before { background: var(--card-accent, var(--accent)); }
+  .sec-card::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: var(--glow, transparent);
+    opacity: 0; transition: opacity .3s;
+    pointer-events: none;
+  }
+  .sec-card:hover::after { opacity: 1; }
 
-  .card-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
-  .card-title {
+  .sec-card[data-glow="purple"] { --glow: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(108,99,255,.08), transparent); }
+  .sec-card[data-glow="teal"]   { --glow: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,201,177,.06), transparent); }
+  .sec-card[data-glow="green"]  { --glow: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,217,126,.06), transparent); }
+  .sec-card[data-glow="amber"]  { --glow: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(245,166,35,.06), transparent); }
+  .sec-card[data-glow="pink"]   { --glow: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255,107,157,.06), transparent); }
+
+  .sc-icon { font-size: 32px; line-height: 1; }
+  .sc-name {
     font-family: var(--display);
-    font-size: 14px;
-    font-weight: 700;
+    font-size: 17px; font-weight: 700;
+  }
+  .sc-hint {
+    font-size: 12.5px; color: var(--muted);
+    font-weight: 300; line-height: 1.6;
+  }
+  .sc-arrow {
+    font-family: var(--mono);
+    font-size: 11px; color: var(--dim);
+    margin-top: auto; letter-spacing: .05em;
+    transition: color .2s;
+  }
+  .sec-card:hover .sc-arrow { color: var(--accent); }
+
+  /* ── QUICK STATS ── */
+  .stats-row {
+    display: flex; gap: 36px; flex-wrap: wrap;
+    max-width: 1100px; margin: 72px 40px 0;
+    position: relative; z-index: 10;
+    padding-bottom: 64px;
+  }
+  .stat { display: flex; flex-direction: column; gap: 3px; }
+  .stat-num {
+    font-family: var(--display);
+    font-size: 30px; font-weight: 800;
     color: var(--text);
-    line-height: 1.3;
-    flex: 1;
   }
-  .pay-badge {
+  .stat-label {
     font-family: var(--mono);
-    font-size: 11px;
-    font-weight: 500;
-    color: var(--green);
-    white-space: nowrap;
-    padding-top: 1px;
+    font-size: 10px; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--muted);
   }
 
-  .badge-row { display: flex; gap: 5px; flex-wrap: wrap; }
-  .badge {
-    font-family: var(--mono);
-    font-size: 10px;
-    padding: 2px 8px;
-    border-radius: 20px;
-    border: 1px solid;
-    white-space: nowrap;
+  @media (max-width: 680px) {
+    .hero { padding: 60px 20px 60px; min-height: auto; }
+    .sections-grid { margin: 0 20px; grid-template-columns: 1fr 1fr; }
+    .stats-row { margin: 48px 20px 0; }
   }
-
-  .diff-badge-beginner   { color: #5fda8a; border-color: rgba(95,218,138,.3); background: rgba(95,218,138,.06); }
-  .diff-badge-intermediate { color: #f5c842; border-color: rgba(245,200,66,.3); background: rgba(245,200,66,.06); }
-  .diff-badge-advanced   { color: #f5874a; border-color: rgba(245,135,74,.3); background: rgba(245,135,74,.06); }
-  .diff-badge-expert     { color: #b57bee; border-color: rgba(181,123,238,.3); background: rgba(181,123,238,.06); }
-
-  .sector-badge { color: var(--text-muted); border-color: var(--border); background: transparent; }
-
-  .tech-badge { color: var(--text-dim); border-color: rgba(255,255,255,0.05); background: rgba(255,255,255,0.02); }
-
-  .card-desc {
-    font-size: 12.5px;
-    color: var(--text-muted);
-    line-height: 1.6;
-    font-weight: 300;
-  }
-
-  .dataset-line {
-    font-family: var(--mono);
-    font-size: 10.5px;
-    color: var(--text-dim);
-    line-height: 1.5;
-    padding-top: 4px;
-    border-top: 1px solid var(--border);
-  }
-  .dataset-line .ds-label { color: var(--text-muted); }
-
-  /* Sector accent colors */
-  .card[data-sector="health"]   { --card-accent: #ff6b9d; }
-  .card[data-sector="fintech"]  { --card-accent: #00d97e; }
-  .card[data-sector="cyber"]    { --card-accent: #ff5c5c; }
-  .card[data-sector="chip"]     { --card-accent: #b57bee; }
-  .card[data-sector="drone"]    { --card-accent: #5b9ef5; }
-  .card[data-sector="vision"]   { --card-accent: #f5a623; }
-  .card[data-sector="recog"]    { --card-accent: #00c9b1; }
-  .card[data-sector="robotics"] { --card-accent: #ff8c42; }
-  .card[data-sector="space"]    { --card-accent: #7a7a9a; }
-  .card[data-sector="energy"]   { --card-accent: #52d65a; }
-
-  /* NO RESULTS */
-  .no-results {
-    display: none;
-    text-align: center;
-    padding: 80px 20px;
-    color: var(--text-dim);
-    font-family: var(--mono);
-    font-size: 13px;
-  }
-  .no-results span { display: block; font-size: 32px; margin-bottom: 12px; }
-
-  /* FOOTER */
-  footer {
-    position: relative;
-    z-index: 10;
-    text-align: center;
-    padding: 32px 40px;
-    border-top: 1px solid var(--border);
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--text-dim);
-    letter-spacing: .05em;
-  }
-
-  /* SCROLLBAR */
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: var(--bg); }
-  ::-webkit-scrollbar-thumb { background: var(--border-hover); border-radius: 3px; }
-
-  /* RESPONSIVE */
-  @media (max-width: 700px) {
-    header, main { padding-left: 20px; padding-right: 20px; }
-    header { padding-top: 48px; }
-    .controls-wrap { padding-left: 20px; padding-right: 20px; }
-    .grid { grid-template-columns: 1fr; }
-    h1 { font-size: 32px; }
-  }
-
-  /* ANIMATIONS */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(12px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  .card { animation: fadeUp .3s ease both; }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="header-label">Freelancer intelligence</div>
-  <h1>R&D <span>Problem</span><br>Compendium</h1>
-  <p class="header-sub">42 high-value technical problems across 10 sectors — from chip firmware to satellite imagery. Each with public datasets, tech stack, and freelance pay tier.</p>
-  <div class="header-stats">
-    <div class="hstat"><span class="hstat-num">42</span><span class="hstat-label">Problems</span></div>
-    <div class="hstat"><span class="hstat-num">10</span><span class="hstat-label">Sectors</span></div>
-    <div class="hstat"><span class="hstat-num">4</span><span class="hstat-label">Difficulty tiers</span></div>
-    <div class="hstat"><span class="hstat-num">60+</span><span class="hstat-label">Public datasets</span></div>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-home" href="index.html">my<span>space</span></a>
+    <a href="journals/index.html">Journals</a>
+    <a href="projects/index.html">Projects</a>
+    <a href="media/index.html">Media</a>
+    <a href="media/index.html#pdfs">PDFs</a>
   </div>
-</header>
+</nav>
 
-<div class="controls-wrap">
-  <div class="controls-inner">
-    <div class="search-row">
-      <input class="search-box" type="text" id="search" placeholder="Search problems, tools, datasets..." oninput="applyFilters()">
-      <span class="count-badge"><strong id="count-display">42</strong> results</span>
-    </div>
-    <div class="filter-row" id="sector-filters">
-      <button class="filter-btn active" onclick="setSector('all',this)">All</button>
-      <button class="filter-btn" onclick="setSector('health',this)">Healthcare</button>
-      <button class="filter-btn" onclick="setSector('fintech',this)">Fintech</button>
-      <button class="filter-btn" onclick="setSector('cyber',this)">Cybersecurity</button>
-      <button class="filter-btn" onclick="setSector('chip',this)">Chip / firmware</button>
-      <button class="filter-btn" onclick="setSector('drone',this)">Drones</button>
-      <button class="filter-btn" onclick="setSector('vision',this)">Camera / vision</button>
-      <button class="filter-btn" onclick="setSector('recog',this)">Recognition</button>
-      <button class="filter-btn" onclick="setSector('robotics',this)">Robotics</button>
-      <button class="filter-btn" onclick="setSector('space',this)">Space</button>
-      <button class="filter-btn" onclick="setSector('energy',this)">Energy</button>
-    </div>
+<section class="hero">
+  <div class="hero-eyebrow fade-up">Personal digital garden</div>
+  <h1 class="fade-up delay-1">
+    Everything<br>I'm building,<br>
+    <span class="name">thinking &amp; making.</span>
+  </h1>
+  <p class="hero-desc fade-up delay-2">
+    A private space for journals, projects, references, and media.
+    Everything lives here so I don't lose it.
+  </p>
+</section>
+
+<div class="sections-grid">
+  <a class="sec-card fade-up delay-1" href="journals/index.html" data-glow="purple">
+    <div class="sc-icon">📓</div>
+    <div class="sc-name">Journals</div>
+    <div class="sc-hint">Daily logs, reflections, learning notes. Searchable and tagged.</div>
+    <div class="sc-arrow">open →</div>
+  </a>
+  <a class="sec-card fade-up delay-2" href="projects/index.html" data-glow="teal">
+    <div class="sc-icon">🛠</div>
+    <div class="sc-name">Projects</div>
+    <div class="sc-hint">Ongoing builds, side experiments, shipped things.</div>
+    <div class="sc-arrow">open →</div>
+  </a>
+  <a class="sec-card fade-up delay-3" href="media/index.html" data-glow="green">
+    <div class="sc-icon">🖼</div>
+    <div class="sc-name">Media</div>
+    <div class="sc-hint">Images, audio, video embeds and saved links.</div>
+    <div class="sc-arrow">open →</div>
+  </a>
+  <a class="sec-card fade-up delay-4" href="media/index.html#pdfs" data-glow="amber">
+    <div class="sc-icon">📄</div>
+    <div class="sc-name">PDFs &amp; Docs</div>
+    <div class="sc-hint">Research, plans, notes — all embedded inline.</div>
+    <div class="sc-arrow">open →</div>
+  </a>
+  <a class="sec-card fade-up delay-5" href="media/index.html#links" data-glow="pink">
+    <div class="sc-icon">🔗</div>
+    <div class="sc-name">Links &amp; Resources</div>
+    <div class="sc-hint">Saved YouTube videos, bookmarks and references.</div>
+    <div class="sc-arrow">open →</div>
+  </a>
+</div>
+
+<div class="stats-row">
+  <div class="stat fade-up delay-1">
+    <span class="stat-num">—</span>
+    <span class="stat-label">Journal entries</span>
+  </div>
+  <div class="stat fade-up delay-2">
+    <span class="stat-num">—</span>
+    <span class="stat-label">Projects</span>
+  </div>
+  <div class="stat fade-up delay-3">
+    <span class="stat-num">—</span>
+    <span class="stat-label">Saved PDFs</span>
+  </div>
+  <div class="stat fade-up delay-4">
+    <span class="stat-num">—</span>
+    <span class="stat-label">Media items</span>
   </div>
 </div>
 
-<main>
-  <div id="main-content"></div>
-  <div class="no-results" id="no-results">
-    <span>◌</span>
-    No problems match — try a different filter or search term.
-  </div>
-</main>
+<footer>
+  personal space · cloudflare pages · static &amp; self-managed
+</footer>
 
-<footer>Built for freelancers working on the edge of R&D and modern tech — 2025</footer>
-
-<script>
-const PROBLEMS = [
-  {id:1,sector:"health",title:"Medical image segmentation (CT/MRI)",desc:"Segment tumors, organs, or lesions from 3D medical scans. Hospitals and medtech startups pay well for DICOM-compatible pipelines with FDA-traceable outputs.",diff:"intermediate",pay:3,tags:["PyTorch","nnU-Net","MONAI"],dataset:"Medical Segmentation Decathlon, TCIA, NIH-ChestXray14"},
-  {id:2,sector:"health",title:"ECG arrhythmia detection",desc:"Classify 12-lead ECG signals into rhythm classes. Wearable companies and remote patient monitoring platforms are the core clients. Edge deployment on ARM Cortex-M is the hard part.",diff:"intermediate",pay:3,tags:["1D CNN","TensorFlow Lite","Python"],dataset:"PhysioNet CinC 2017, PTB-XL (22k 12-lead ECGs)"},
-  {id:3,sector:"health",title:"Drug-protein interaction prediction",desc:"Predict binding affinity between candidate molecules and target proteins using graph neural networks. CROs and pharma R&D teams outsource this constantly.",diff:"advanced",pay:4,tags:["GNN","PyTorch Geometric","RDKit"],dataset:"BindingDB, ChEMBL, PDBbind, DUD-E"},
-  {id:4,sector:"health",title:"Surgical video phase recognition",desc:"Automatically label surgical workflow phases from laparoscopy video. Enables OR analytics, training, and compliance documentation.",diff:"advanced",pay:4,tags:["Video Transformer","Python","FFMPEG"],dataset:"Cholec80, AutoLaparo, M2CAI 2016"},
-  {id:5,sector:"health",title:"Clinical NLP — ICD code extraction",desc:"Extract diagnoses and procedures from clinical notes and map to ICD-10 codes. Reduces medical billing errors. Strong recurring demand from EHR vendors.",diff:"beginner",pay:2,tags:["LLM fine-tune","spaCy","Python"],dataset:"MIMIC-III (PhysioNet), i2b2 NLP challenges"},
-  {id:6,sector:"health",title:"Retinal disease detection from fundus images",desc:"Detect diabetic retinopathy and macular degeneration from fundus photos. Screening tools for ophthalmology clinics in low-resource settings.",diff:"beginner",pay:2,tags:["EfficientNet","OpenCV","Python"],dataset:"EyePACS/Kaggle DR, DRIVE, MESSIDOR-2"},
-  {id:7,sector:"fintech",title:"Real-time fraud detection system",desc:"Score card-not-present transactions in under 50ms using streaming feature pipelines. False-positive rate is the KPI clients pay for — every rejected good transaction costs revenue.",diff:"intermediate",pay:3,tags:["XGBoost","Kafka","Flink","Python"],dataset:"IEEE-CIS Fraud Detection (Kaggle), PaySim synthetic"},
-  {id:8,sector:"fintech",title:"Anti-money laundering graph analytics",desc:"Detect layering and structuring in transaction graphs using GNNs. Banks need SAR-filing automation as regulators increase AML scrutiny globally.",diff:"advanced",pay:4,tags:["GraphSAGE","Neo4j","Python"],dataset:"Elliptic Bitcoin dataset, IBM AMLSim synthetic"},
-  {id:9,sector:"fintech",title:"Options pricing with ML",desc:"Build a neural network that prices American options faster than Monte Carlo while matching Black-Scholes Greeks. Quant desks at hedge funds pay project fees.",diff:"advanced",pay:4,tags:["PyTorch","QuantLib","Python"],dataset:"CBOE historical options chain data, OptionMetrics"},
-  {id:10,sector:"fintech",title:"Credit risk scoring for thin-file borrowers",desc:"Build alternative credit scores for people with no credit history using telco, e-commerce, and behavioral data. Huge market in Southeast Asia and Africa.",diff:"intermediate",pay:3,tags:["LightGBM","fairlearn","Python"],dataset:"Home Credit Default (Kaggle), Taiwan Credit dataset"},
-  {id:11,sector:"fintech",title:"Market microstructure — order book modeling",desc:"Model limit order book dynamics to predict short-term price movements. HFT firms and prop shops hire freelancers for alpha research projects.",diff:"expert",pay:4,tags:["Lobster data","JAX","CUDA"],dataset:"LOBSTER (NASDAQ), Deutsche Boerse A7 market data"},
-  {id:12,sector:"fintech",title:"ESG document intelligence",desc:"Extract and normalize ESG metrics from sustainability reports using LLMs. Asset managers need this for portfolio scoring — a fast-growing compliance niche.",diff:"beginner",pay:2,tags:["LLM","pdfplumber","Python"],dataset:"CDP Climate Disclosures, WRDS Compustat ESG"},
-  {id:13,sector:"cyber",title:"Network intrusion detection (NIDS)",desc:"Classify network flows as benign or attack categories in real time. Enterprises need ML-based IDSes that generalize to novel attack patterns unlike signature rules.",diff:"intermediate",pay:3,tags:["Random Forest","Scapy","Python"],dataset:"CICIDS 2017/2018, NSL-KDD, UNSW-NB15"},
-  {id:14,sector:"cyber",title:"Malware static analysis and classification",desc:"Classify PE binaries into malware families from opcode sequences and import tables. AV vendors and threat intel teams outsource novel family triage.",diff:"intermediate",pay:3,tags:["Assembly","Python","LIEF"],dataset:"EMBER 2018 (1M samples), Kaggle Malware Classification"},
-  {id:15,sector:"cyber",title:"Side-channel power analysis (SCA)",desc:"Break cryptographic implementations by analyzing power traces from embedded devices. Demand from hardware security labs and EAL certification projects.",diff:"expert",pay:4,tags:["NumPy","ChipWhisperer","C"],dataset:"DPA Contest v4, ASCAD dataset (AES-128)"},
-  {id:16,sector:"cyber",title:"Firmware vulnerability analysis",desc:"Automate extraction and static analysis of firmware blobs from IoT devices. Bug bounty programs and product security teams pay per critical finding.",diff:"advanced",pay:3,tags:["Binwalk","Ghidra","Python","Angr"],dataset:"IoTFirmwareDataset (GitHub), FirmWire test images"},
-  {id:17,sector:"cyber",title:"Deepfake detection for identity verification",desc:"Detect AI-generated face swaps and lip-sync fakes in video KYC flows. Banks and government e-services have urgent compliance deadlines.",diff:"advanced",pay:4,tags:["EfficientNet","dlib","PyTorch"],dataset:"FaceForensics++, DFDC (Meta), Celeb-DF v2"},
-  {id:18,sector:"cyber",title:"Phishing URL and email classifier",desc:"Classify phishing URLs and email bodies in real time with under 5ms latency. Embedding in email gateways requires ONNX export and C++ inference.",diff:"beginner",pay:2,tags:["BERT","FastAPI","ONNX"],dataset:"PhishTank, ISCX URL 2016, Enron email corpus"},
-  {id:19,sector:"chip",title:"FPGA-based neural network accelerator",desc:"Implement a quantized CNN inference engine on Xilinx/Intel FPGA. Clients include edge AI camera companies and industrial machine vision OEMs.",diff:"expert",pay:4,tags:["HLS","Verilog","Vitis AI"],dataset:"MLPerf Tiny benchmark, ImageNet (ILSVRC)"},
-  {id:20,sector:"chip",title:"RISC-V custom ISA extension",desc:"Add domain-specific instructions to a RISC-V softcore for crypto or ML workloads. Growing demand from ASIC startups doing tape-out.",diff:"expert",pay:4,tags:["RISC-V","Chisel","GCC toolchain"],dataset:"RISC-V test suites (riscv-tests), Dhrystone/CoreMark"},
-  {id:21,sector:"chip",title:"RTOS scheduler for safety-critical systems",desc:"Build a deterministic task scheduler with watchdog and stack-overflow detection for ARM Cortex-M. Required for ISO 26262 / IEC 61508 certification.",diff:"advanced",pay:3,tags:["FreeRTOS","C","Keil MDK"],dataset:"RTEMS test suite, EEMBC RTOS benchmark"},
-  {id:22,sector:"chip",title:"Low-power RF protocol for IoT sensors",desc:"Design a custom 2.4GHz MAC layer over BLE or 802.15.4 optimized for under 5µA average current. Battery lifetime on coin cell is the deliverable.",diff:"advanced",pay:3,tags:["Zephyr RTOS","C","nRF52840"],dataset:"Kaggle IoT Network Intrusion, Contiki-NG simulation logs"},
-  {id:23,sector:"chip",title:"DDR memory controller verification",desc:"Write UVM testbench and functional coverage for a DDR5 controller. Semiconductor IP companies frequently outsource verification to freelance teams.",diff:"expert",pay:4,tags:["SystemVerilog","UVM","VCS"],dataset:"Micron DDR5 datasheet waveforms, JEDEC spec test vectors"},
-  {id:24,sector:"drone",title:"Thermal + RGB sensor fusion",desc:"Fuse data from a thermal and visible-light camera for night-time person detection. Search-and-rescue and border patrol operators are the target clients.",diff:"intermediate",pay:3,tags:["OpenCV","YOLOv8","Python"],dataset:"FLIR Thermal dataset, KAIST Multispectral Pedestrian"},
-  {id:25,sector:"drone",title:"LiDAR SLAM on edge hardware",desc:"Run a full SLAM pipeline (LOAM/LIO-SAM) on Jetson Orin with under 100ms loop closure. Inspection and mapping drones need onboard autonomy.",diff:"advanced",pay:4,tags:["ROS2","C++","Jetson"],dataset:"MulRan (LiDAR urban), Hilti SLAM Challenge"},
-  {id:26,sector:"drone",title:"Precision landing with computer vision",desc:"Land a drone on a moving AprilTag marker using monocular camera feedback. Drone delivery platforms need this for rooftop and vehicle pad landings.",diff:"intermediate",pay:3,tags:["ArduPilot","OpenCV","Python"],dataset:"Custom sim (AirSim), ArduPilot Gazebo models"},
-  {id:27,sector:"drone",title:"Windy-condition flight stabilization",desc:"Model wind disturbance using onboard airspeed sensors and add feedforward compensation to the attitude controller. Offshore wind turbine inspection is the use case.",diff:"advanced",pay:3,tags:["Simulink","Python","ArduPilot"],dataset:"NOAA wind profile datasets, open-source Pixhawk logs"},
-  {id:28,sector:"vision",title:"3D reconstruction from monocular video",desc:"Generate a dense point cloud or NeRF scene from a single handheld or drone-mounted camera. AEC firms use this for site documentation without LiDAR.",diff:"advanced",pay:3,tags:["NeRF","COLMAP","Python"],dataset:"Tanks and Temples benchmark, ETH3D, BlendedMVS"},
-  {id:29,sector:"vision",title:"Low-light image enhancement",desc:"Denoise and enhance images captured in near-darkness for surveillance and phone cameras. ISP tuning and on-device ML pipeline are both in scope.",diff:"intermediate",pay:3,tags:["RetinexNet","PyTorch","C++"],dataset:"LOL dataset, SID (Sony), SICE paired"},
-  {id:30,sector:"vision",title:"Hyperspectral imaging analysis",desc:"Classify materials or detect anomalies from 100+ band hyperspectral imagery. Clients in agriculture (crop stress), mining, and pharmaceutical QC.",diff:"advanced",pay:4,tags:["Python","ENVI","scikit-learn"],dataset:"Indian Pines, Salinas Valley, HypSen (agriculture)"},
-  {id:31,sector:"vision",title:"Gaze estimation for HCI and assistive tech",desc:"Estimate where a user is looking on screen from a webcam stream. Used in eye-tracking for ALS patients, UX research, and automotive attention monitoring.",diff:"intermediate",pay:2,tags:["MPIIGaze","PyTorch","OpenCV"],dataset:"GazeCapture, MPIIFaceGaze, ETH-XGaze"},
-  {id:32,sector:"vision",title:"6-DOF object pose estimation",desc:"Estimate the 3D pose of industrial parts for robotic grasping. Automotive and electronics manufacturers need this for bin-picking automation.",diff:"advanced",pay:4,tags:["FoundPose","PyTorch","ROS2"],dataset:"YCB-Video, LineMOD, BOP Benchmark"},
-  {id:33,sector:"recog",title:"Speaker diarization (who spoke when)",desc:"Label multi-speaker audio recordings with speaker identities and timestamps. Legal transcription, meeting intelligence, and call center analytics are the markets.",diff:"intermediate",pay:3,tags:["pyannote.audio","Python","Whisper"],dataset:"AMI Meeting Corpus, VoxConverse, CALLHOME"},
-  {id:34,sector:"recog",title:"Continuous sign language recognition",desc:"Recognize full ASL/BSL sentences from video — not just isolated signs. Accessibility compliance is driving corporate demand for real-time captioning tools.",diff:"advanced",pay:3,tags:["MediaPipe","GRU","PyTorch"],dataset:"PHOENIX-2014T, How2Sign, MS-ASL"},
-  {id:35,sector:"recog",title:"Document layout understanding (OCR++)",desc:"Extract structured data (tables, forms, invoices) from scanned documents beyond raw OCR. Accounts payable automation is a massive market.",diff:"beginner",pay:2,tags:["LayoutLMv3","Tesseract","Python"],dataset:"FUNSD, CORD, DocVQA, RVL-CDIP"},
-  {id:36,sector:"recog",title:"Emotion recognition from multimodal input",desc:"Infer emotional state from face, voice, and text simultaneously. Mental health monitoring apps and HR tech platforms are primary clients.",diff:"intermediate",pay:3,tags:["Wav2Vec2","OpenFace","PyTorch"],dataset:"CMU-MOSI, IEMOCAP, AffectNet"},
-  {id:37,sector:"robotics",title:"Force-torque controlled assembly",desc:"Program a robot arm to insert parts with under 0.1mm tolerance using force feedback. Electronics manufacturing lines constantly need this for connector insertion.",diff:"advanced",pay:4,tags:["ROS2","Python","UR5e API"],dataset:"Assembly101, NIST task board benchmark"},
-  {id:38,sector:"robotics",title:"Sim-to-real transfer for manipulation",desc:"Train a policy in IsaacGym simulation and deploy to a real robot with domain randomization. Reduces costly physical trials for robot startups.",diff:"advanced",pay:4,tags:["IsaacGym","PPO","Python"],dataset:"RLBench, MetaWorld, Robosuite"},
-  {id:39,sector:"robotics",title:"Legged robot terrain adaptation",desc:"Adapt gait parameters to uneven terrain using online foot contact sensing. Inspection robots for utilities and construction need reliable outdoor locomotion.",diff:"expert",pay:4,tags:["MuJoCo","PyTorch","C++"],dataset:"ANYmal-C sim datasets, ETH locomotion benchmarks"},
-  {id:40,sector:"space",title:"Satellite imagery change detection",desc:"Flag land-use changes between two satellite passes for defense, agriculture, and disaster response. Planet Labs and Maxar have open data programs.",diff:"beginner",pay:2,tags:["Sentinel-2","PyTorch","GDAL"],dataset:"LEVIR-CD, xBD (disaster), SpaceNet 7"},
-  {id:41,sector:"space",title:"Debris collision probability estimation",desc:"Compute conjunction probability between tracked objects in TLE catalogs. Private space operators and national agencies need this as orbit gets congested.",diff:"advanced",pay:4,tags:["Python","SPICE","AstroPy"],dataset:"Space-Track TLE archive, CSpOC CDM dataset"},
-  {id:42,sector:"energy",title:"Grid stability — renewable intermittency forecasting",desc:"Forecast solar and wind output 24–72h ahead for grid balancing. Utilities and aggregators pay per MAPE point of improvement over persistence baselines.",diff:"intermediate",pay:3,tags:["Temporal Fusion Transformer","Python","Darts"],dataset:"NREL NSRDB solar, Global Energy Forecasting (GEFCom2014)"},
-];
-
-const DIFF_ORDER = { beginner:0, intermediate:1, advanced:2, expert:3 };
-const DIFF_LABELS = { beginner:'Beginner', intermediate:'Intermediate', advanced:'Advanced', expert:'Expert' };
-const SECTOR_LABELS = { health:'Healthcare', fintech:'Fintech', cyber:'Cybersecurity', chip:'Chip / firmware', drone:'Drones', vision:'Camera / vision', recog:'Recognition', robotics:'Robotics', space:'Space', energy:'Energy' };
-const PAY_LABELS = ['','$','$$','$$$','$$$$'];
-const DIFF_COLORS = { beginner:'#3a5c42', intermediate:'#5c4d1a', advanced:'#5c2e1a', expert:'#3d2e5c' };
-const DIFF_DOT = { beginner:'#5fda8a', intermediate:'#f5c842', advanced:'#f5874a', expert:'#b57bee' };
-
-let currentSector = 'all';
-let searchVal = '';
-
-function setSector(s, btn) {
-  currentSector = s;
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  render();
-}
-
-function applyFilters() {
-  searchVal = document.getElementById('search').value;
-  render();
-}
-
-function render() {
-  const q = searchVal.toLowerCase();
-  let filtered = PROBLEMS.filter(p => {
-    const matchSector = currentSector === 'all' || p.sector === currentSector;
-    const matchSearch = !q || [p.title, p.desc, p.dataset, ...p.tags].join(' ').toLowerCase().includes(q);
-    return matchSector && matchSearch;
-  });
-
-  document.getElementById('count-display').textContent = filtered.length;
-  const container = document.getElementById('main-content');
-  const noRes = document.getElementById('no-results');
-
-  if (filtered.length === 0) {
-    container.innerHTML = '';
-    noRes.style.display = 'block';
-    return;
-  }
-  noRes.style.display = 'none';
-
-  const groups = {};
-  filtered.forEach(p => {
-    if (!groups[p.diff]) groups[p.diff] = [];
-    groups[p.diff].push(p);
-  });
-
-  const order = ['beginner','intermediate','advanced','expert'];
-  container.innerHTML = order.filter(d => groups[d]).map(diff => {
-    const cards = groups[diff].map((p, i) => `
-      <div class="card" data-sector="${p.sector}" style="animation-delay:${i * 0.04}s">
-        <div class="card-header">
-          <div class="card-title">${p.title}</div>
-          <div class="pay-badge">${PAY_LABELS[p.pay]}</div>
-        </div>
-        <div class="badge-row">
-          <span class="badge diff-badge-${diff}">${DIFF_LABELS[diff]}</span>
-          <span class="badge sector-badge">${SECTOR_LABELS[p.sector] || p.sector}</span>
-          ${p.tags.map(t => `<span class="badge tech-badge">${t}</span>`).join('')}
-        </div>
-        <div class="card-desc">${p.desc}</div>
-        <div class="dataset-line"><span class="ds-label">datasets — </span>${p.dataset}</div>
-      </div>
-    `).join('');
-
-    return `
-      <div class="diff-section">
-        <div class="diff-heading">
-          <div class="diff-dot" style="background:${DIFF_DOT[diff]}"></div>
-          <div class="diff-heading-label">${DIFF_LABELS[diff]} — ${groups[diff].length} problem${groups[diff].length > 1 ? 's' : ''}</div>
-          <div class="diff-heading-line"></div>
-        </div>
-        <div class="grid">${cards}</div>
-      </div>
-    `;
-  }).join('');
-}
-
-render();
-</script>
 </body>
 </html>

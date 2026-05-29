@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Media — My Digital Space</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;500;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<style>
+  /* ── LINK CARDS ── */
+  .link-list { display: flex; flex-direction: column; gap: 10px; }
+  .link-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    display: flex; flex-direction: column; gap: 6px;
+    transition: border-color .2s;
+  }
+  .link-card:hover { border-color: var(--border-h); }
+  .link-card a {
+    font-family: var(--display);
+    font-size: 14px; font-weight: 700;
+    color: var(--text); text-decoration: none;
+    transition: color .15s;
+  }
+  .link-card a:hover { color: var(--accent); }
+  .link-url {
+    font-family: var(--mono);
+    font-size: 10px; color: var(--dim);
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .link-note { font-size: 12.5px; color: var(--muted); font-weight: 300; }
+
+  /* ── YT GRID ── */
+  .yt-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px,1fr));
+    gap: 14px;
+  }
+  .yt-embed { border-radius: 12px; overflow: hidden; border: 1px solid var(--border); background: var(--surface); }
+  .yt-embed iframe { display: block; width: 100%; aspect-ratio: 16/9; border: none; }
+  .yt-cap {
+    padding: 12px 16px;
+    font-family: var(--mono); font-size: 11px;
+    color: var(--muted); border-top: 1px solid var(--border);
+  }
+
+  /* ── TABS ── */
+  .tab-row {
+    display: flex; gap: 4px; margin-bottom: 36px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0;
+  }
+  .tab-btn {
+    font-family: var(--mono); font-size: 11px;
+    letter-spacing: .08em; text-transform: uppercase;
+    padding: 8px 16px;
+    background: transparent;
+    color: var(--muted);
+    border: none; border-bottom: 2px solid transparent;
+    cursor: pointer; transition: all .15s;
+    margin-bottom: -1px;
+  }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-home" href="../index.html">my<span>space</span></a>
+    <a href="../journals/index.html">Journals</a>
+    <a href="../projects/index.html">Projects</a>
+    <a href="index.html" class="active">Media</a>
+    <a href="index.html#pdfs">PDFs</a>
+  </div>
+</nav>
+
+<div class="page">
+  <div class="sec-label">Assets &amp; embeds</div>
+  <h1 class="page-title">Media &amp; <span>Resources</span></h1>
+  <p class="page-sub">
+    Images, audio, PDFs, YouTube embeds, and saved links.
+    Each section is independent — add items by copying the example HTML blocks.
+  </p>
+
+  <div class="tab-row">
+    <button class="tab-btn active" onclick="openTab('images',this)">Images</button>
+    <button class="tab-btn" onclick="openTab('audio',this)">Audio</button>
+    <button class="tab-btn" onclick="openTab('video',this)">Videos</button>
+    <button class="tab-btn" id="pdfs-tab" onclick="openTab('pdfs',this)">PDFs</button>
+    <button class="tab-btn" id="links-tab" onclick="openTab('links',this)">Links</button>
+  </div>
+
+  <!-- ══════════ IMAGES ══════════ -->
+  <div class="tab-panel active" id="panel-images">
+
+    <div class="divider">
+      <div class="divider-label">Gallery</div>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- ─ To add images: copy an .img-item block, put your file in assets/images/ ─ -->
+    <div class="img-gallery">
+
+      <div class="img-item">
+        <!-- Replace src with your image path, e.g. ../assets/images/photo.jpg -->
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=80"
+             alt="Circuit board macro" loading="lazy">
+        <div class="img-item-cap">circuit board macro — placeholder</div>
+      </div>
+
+      <div class="img-item">
+        <img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&q=80"
+             alt="LiDAR point cloud" loading="lazy">
+        <div class="img-item-cap">lidar point cloud — placeholder</div>
+      </div>
+
+      <div class="img-item">
+        <img src="https://images.unsplash.com/photo-1535378917042-10a22c95931a?w=600&q=80"
+             alt="Robot arm" loading="lazy">
+        <div class="img-item-cap">robot arm — placeholder</div>
+      </div>
+
+      <div class="img-item">
+        <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&q=80"
+             alt="Drone flight" loading="lazy">
+        <div class="img-item-cap">drone shot — placeholder</div>
+      </div>
+
+      <!-- ─ ADD MORE HERE ─ -->
+
+    </div>
+
+    <p style="margin-top:18px;font-family:var(--mono);font-size:11px;color:var(--dim);">
+      Put your images in <code style="color:var(--accent)">assets/images/</code> and replace the placeholder src values above.
+    </p>
+
+  </div>
+
+  <!-- ══════════ AUDIO ══════════ -->
+  <div class="tab-panel" id="panel-audio">
+
+    <div class="divider">
+      <div class="divider-label">Audio files</div>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- ─ To add audio: copy an .audio-row block, put your .mp3 in assets/audio/ ─ -->
+
+    <div class="audio-row">
+      <div class="audio-label">Focus mix · 2025-06-10</div>
+      <!-- Replace src with your file, e.g. ../assets/audio/focus-mix.mp3 -->
+      <audio controls>
+        <source src="../assets/audio/focus-mix.mp3" type="audio/mpeg">
+        <span style="font-family:var(--mono);font-size:11px;color:var(--dim);">
+          Audio file not found — add focus-mix.mp3 to assets/audio/
+        </span>
+      </audio>
+    </div>
+
+    <div class="audio-row">
+      <div class="audio-label">Voice note · project brainstorm</div>
+      <audio controls>
+        <source src="../assets/audio/brainstorm.mp3" type="audio/mpeg">
+        <span style="font-family:var(--mono);font-size:11px;color:var(--dim);">
+          Audio file not found — add brainstorm.mp3 to assets/audio/
+        </span>
+      </audio>
+    </div>
+
+    <p style="margin-top:18px;font-family:var(--mono);font-size:11px;color:var(--dim);">
+      Put your audio files in <code style="color:var(--accent)">assets/audio/</code> and update the src paths above.
+    </p>
+
+  </div>
+
+  <!-- ══════════ VIDEOS / YOUTUBE ══════════ -->
+  <div class="tab-panel" id="panel-video">
+
+    <div class="divider">
+      <div class="divider-label">Saved YouTube videos</div>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- ─ To embed a YouTube video:
+           Replace VIDEO_ID in the src URL with the ID from the YouTube URL.
+           e.g. https://www.youtube.com/watch?v=VIDEO_ID ─ -->
+
+    <div class="yt-grid">
+
+      <div class="yt-embed">
+        <iframe
+          src="https://www.youtube.com/embed/aircAruvnKk"
+          title="3Blue1Brown — But what is a neural network?"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen loading="lazy">
+        </iframe>
+        <div class="yt-cap">3b1b — But what is a neural network? · reference</div>
+      </div>
+
+      <div class="yt-embed">
+        <iframe
+          src="https://www.youtube.com/embed/zjkBMFhNj_g"
+          title="Andrej Karpathy — Intro to LLMs"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen loading="lazy">
+        </iframe>
+        <div class="yt-cap">Karpathy — Intro to LLMs · reference</div>
+      </div>
+
+      <!-- ─ ADD MORE yt-embed BLOCKS HERE ─ -->
+
+    </div>
+
+  </div>
+
+  <!-- ══════════ PDFs ══════════ -->
+  <div class="tab-panel" id="panel-pdfs">
+
+    <div class="divider">
+      <div class="divider-label">Embedded PDFs</div>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- ─ To embed a PDF: copy an .embed-box block, put your PDF in assets/pdfs/ ─ -->
+
+    <div class="embed-box">
+      <!-- Replace src with your PDF path, e.g. ../assets/pdfs/your-doc.pdf -->
+      <iframe
+        src="../assets/pdfs/focus_plan.pdf"
+        height="700"
+        title="Focus Plan PDF">
+      </iframe>
+      <div class="embed-caption">
+        focus_plan.pdf — place file at <code style="color:var(--accent)">assets/pdfs/focus_plan.pdf</code>
+      </div>
+    </div>
+
+    <div class="embed-box" style="margin-top:14px;">
+      <iframe
+        src="../assets/pdfs/research-notes.pdf"
+        height="700"
+        title="Research notes">
+      </iframe>
+      <div class="embed-caption">
+        research-notes.pdf — <code style="color:var(--accent)">assets/pdfs/research-notes.pdf</code>
+      </div>
+    </div>
+
+    <p style="margin-top:18px;font-family:var(--mono);font-size:11px;color:var(--dim);">
+      Put PDFs in <code style="color:var(--accent)">assets/pdfs/</code> and update the src paths above.
+      PDFs render inline if the browser supports it; otherwise a download link appears.
+    </p>
+
+  </div>
+
+  <!-- ══════════ LINKS ══════════ -->
+  <div class="tab-panel" id="panel-links">
+
+    <div class="divider">
+      <div class="divider-label">Bookmarks &amp; references</div>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- ─ To add a link: copy a .link-card block ─ -->
+    <div class="link-list">
+
+      <div class="link-card">
+        <a href="https://arxiv.org/abs/2106.10165" target="_blank" rel="noopener">LoRA: Low-Rank Adaptation of Large Language Models</a>
+        <div class="link-url">arxiv.org/abs/2106.10165</div>
+        <div class="link-note">The paper that made fine-tuning affordable. Reference for any LLM tuning work.</div>
+        <div style="margin-top:4px;display:flex;gap:6px;">
+          <span class="tag tag-accent">paper</span>
+          <span class="tag">LLM</span>
+        </div>
+      </div>
+
+      <div class="link-card">
+        <a href="https://docs.ros.org/en/humble/index.html" target="_blank" rel="noopener">ROS 2 Humble Documentation</a>
+        <div class="link-url">docs.ros.org/en/humble</div>
+        <div class="link-note">Primary reference for anything robotics. Especially the Nav2 and lifecycle node docs.</div>
+        <div style="margin-top:4px;display:flex;gap:6px;">
+          <span class="tag">docs</span>
+          <span class="tag">robotics</span>
+        </div>
+      </div>
+
+      <div class="link-card">
+        <a href="https://huggingface.co/datasets" target="_blank" rel="noopener">HuggingFace Datasets Hub</a>
+        <div class="link-url">huggingface.co/datasets</div>
+        <div class="link-note">First stop when looking for training data on any ML project.</div>
+        <div style="margin-top:4px;display:flex;gap:6px;">
+          <span class="tag tag-green">tool</span>
+          <span class="tag">ML</span>
+        </div>
+      </div>
+
+      <div class="link-card">
+        <a href="https://www.cloudflare.com/en-gb/developer-platform/pages/" target="_blank" rel="noopener">Cloudflare Pages — free static hosting</a>
+        <div class="link-url">cloudflare.com/developer-platform/pages</div>
+        <div class="link-note">Where this site is hosted. Free tier is generous — custom domain, HTTPS, unlimited bandwidth.</div>
+        <div style="margin-top:4px;display:flex;gap:6px;">
+          <span class="tag">hosting</span>
+          <span class="tag tag-green">free</span>
+        </div>
+      </div>
+
+      <!-- ─ ADD MORE LINK CARDS HERE ─ -->
+
+    </div>
+
+  </div>
+
+</div>
+
+<footer>my digital space · media</footer>
+
+<script>
+// tab switching
+function openTab(id, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  btn.classList.add('active');
+  // update hash for direct links
+  history.replaceState(null, '', '#' + id);
+}
+
+// open correct tab on load if hash present
+window.addEventListener('DOMContentLoaded', () => {
+  const hash = location.hash.replace('#', '');
+  if (hash) {
+    const btn = document.getElementById(hash + '-tab') ||
+                [...document.querySelectorAll('.tab-btn')].find(b => b.textContent.toLowerCase().includes(hash));
+    if (btn) btn.click();
+  }
+});
+</script>
+</body>
+</html>
