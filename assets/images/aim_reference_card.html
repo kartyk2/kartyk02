@@ -1,0 +1,144 @@
+
+<style>
+  .aim-root { padding: 1.5rem 0; font-family: var(--font-sans); }
+  .aim-header { margin-bottom: 1.5rem; }
+  .aim-title { font-size: 22px; font-weight: 500; color: var(--color-text-primary); margin: 0 0 6px; }
+  .aim-sub { font-size: 15px; color: var(--color-text-secondary); margin: 0; line-height: 1.5; }
+  .section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-text-tertiary); margin: 0 0 10px; }
+  .card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1rem 1.25rem; }
+  .core-statement { font-size: 17px; font-weight: 500; color: var(--color-text-primary); line-height: 1.6; border-left: 3px solid #7F77DD; padding-left: 14px; margin: 0; }
+  .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
+  .mini-card { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 12px 14px; }
+  .mini-card-title { font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin: 0 0 4px; }
+  .mini-card-body { font-size: 12px; color: var(--color-text-secondary); margin: 0; line-height: 1.5; }
+  .dim-card { border-left: 3px solid; border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0; background: var(--color-background-secondary); padding: 10px 14px; }
+  .mistake { display: flex; align-items: flex-start; gap: 8px; padding: 8px 0; border-bottom: 0.5px solid var(--color-border-tertiary); }
+  .mistake:last-child { border-bottom: none; padding-bottom: 0; }
+  .mistake-x { font-size: 13px; color: #A32D2D; font-weight: 500; flex-shrink: 0; margin-top: 1px; }
+  .mistake-text { font-size: 13px; color: var(--color-text-secondary); line-height: 1.5; }
+  .formula-step { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 0.5px solid var(--color-border-tertiary); }
+  .formula-step:last-child { border-bottom: none; }
+  .step-num { width: 24px; height: 24px; border-radius: 50%; background: #EEEDFE; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 500; color: #3C3489; flex-shrink: 0; }
+  .step-text { font-size: 13px; color: var(--color-text-primary); line-height: 1.5; margin: 2px 0 0; }
+  .paradox-box { background: #EEEDFE; border-radius: var(--border-radius-md); padding: 14px 16px; }
+  .paradox-text { font-size: 13px; color: #3C3489; line-height: 1.7; margin: 0; }
+  .section { margin-bottom: 1.25rem; }
+  .proximity-bar { display: flex; align-items: center; gap: 8px; }
+  .prox-label { font-size: 11px; color: var(--color-text-tertiary); white-space: nowrap; }
+  .prox-track { flex: 1; height: 6px; background: var(--color-background-secondary); border-radius: 99px; position: relative; }
+  .prox-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, #CECBF6, #7F77DD); width: 55%; }
+  .prox-dot { position: absolute; top: 50%; transform: translate(-50%, -50%); width: 14px; height: 14px; border-radius: 50%; background: #534AB7; border: 2px solid var(--color-background-primary); left: 55%; }
+  .tag { display: inline-block; font-size: 11px; padding: 3px 8px; border-radius: 99px; margin: 2px; }
+</style>
+
+<div class="aim-root">
+  <h2 class="sr-only">Aspirational Identity Mirroring — Reference Card</h2>
+
+  <div class="aim-header">
+    <p class="aim-title">Aspirational Identity Mirroring</p>
+    <p class="aim-sub">Don't make content about what you want. Become who your audience is trying to be.</p>
+  </div>
+
+  <div class="section">
+    <p class="section-label">The core idea</p>
+    <div class="card">
+      <p class="core-statement">Your content is not entertainment. It is a rehearsal space for your audience's future identity.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="section-label">The science behind it</p>
+    <div class="grid-2">
+      <div class="mini-card">
+        <p class="mini-card-title">Self-Discrepancy Theory</p>
+        <p class="mini-card-body">People feel a constant gap between who they are and who they want to be. Content that speaks to the ideal self closes that gap — that's why it pulls so hard.</p>
+      </div>
+      <div class="mini-card">
+        <p class="mini-card-title">Possible Selves Theory</p>
+        <p class="mini-card-body">Audiences hold vivid mental images of their future selves. When your content looks like that image, it becomes emotionally addictive — abstract becomes real.</p>
+      </div>
+      <div class="mini-card">
+        <p class="mini-card-title">Mirror Neurons</p>
+        <p class="mini-card-body">Watching you live the desired life causes the brain to partially simulate the experience. It literally feels good to consume you.</p>
+      </div>
+      <div class="mini-card">
+        <p class="mini-card-title">Symbolic Consumption</p>
+        <p class="mini-card-body">People follow, share, and watch you as an act of identity expression. They're not sharing your post — they're saying "this is who I am."</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="section-label">The 4 dimensions to mirror</p>
+    <div class="grid-2" style="gap:8px;">
+      <div class="dim-card" style="border-color: #7F77DD;">
+        <p class="mini-card-title">Lifestyle</p>
+        <p class="mini-card-body">The daily reality they want — freedom, aesthetics, pace of life.</p>
+      </div>
+      <div class="dim-card" style="border-color: #1D9E75;">
+        <p class="mini-card-title">Identity</p>
+        <p class="mini-card-body">The label they want to carry — "I'm a creative", "I'm disciplined".</p>
+      </div>
+      <div class="dim-card" style="border-color: #D85A30;">
+        <p class="mini-card-title">Values</p>
+        <p class="mini-card-body">What they want to stand for — authenticity, excellence, independence.</p>
+      </div>
+      <div class="dim-card" style="border-color: #BA7517;">
+        <p class="mini-card-title">Emotion</p>
+        <p class="mini-card-body">How they want to feel daily — calm, powerful, inspired, seen.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="section-label">The proximity rule</p>
+    <div class="card">
+      <div class="proximity-bar" style="margin-bottom: 8px;">
+        <span class="prox-label">Too close</span>
+        <div class="prox-track">
+          <div class="prox-fill"></div>
+          <div class="prox-dot"></div>
+        </div>
+        <span class="prox-label">Too far</span>
+      </div>
+      <p style="font-size: 13px; color: var(--color-text-secondary); margin: 6px 0 0; line-height: 1.6;">
+        Too close = relatable but no pull. Too far = admiration but no identification.
+        <strong style="color: var(--color-text-primary); font-weight: 500;"> The sweet spot: one believable step ahead.</strong>
+      </p>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="section-label">The paradox</p>
+    <div class="paradox-box">
+      <p class="paradox-text">The less you talk <em>about</em> your audience, the more they feel deeply understood. Don't reference their struggle — just visibly embody their desired outcome. Silence about the gap, combined with visibility of the destination, is more magnetic than any direct acknowledgment.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="section-label">Common mistakes</p>
+    <div class="card">
+      <div class="mistake"><span class="mistake-x">✕</span><span class="mistake-text">Creating content about what <em>you</em> find interesting, not what they want to become</span></div>
+      <div class="mistake"><span class="mistake-x">✕</span><span class="mistake-text">Staying too relatable — they like you, but don't need you</span></div>
+      <div class="mistake"><span class="mistake-x">✕</span><span class="mistake-text">Jumping niches — breaks the mirror, audience loses their reference point</span></div>
+      <div class="mistake"><span class="mistake-x">✕</span><span class="mistake-text">Educating when you should be embodying — information is forgettable, identity is sticky</span></div>
+      <div class="mistake"><span class="mistake-x">✕</span><span class="mistake-text">Showing the destination without the journey — the journey is what makes it feel possible</span></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="section-label">The formula</p>
+    <div class="card">
+      <div class="formula-step"><div class="step-num">1</div><p class="step-text">Who does your audience want to become?</p></div>
+      <div class="formula-step"><div class="step-num">2</div><p class="step-text">Become that person — visibly and consistently.</p></div>
+      <div class="formula-step"><div class="step-num">3</div><p class="step-text">Let them use your content as a rehearsal space for their future identity.</p></div>
+      <div class="formula-step"><div class="step-num">4</div><p class="step-text">They will never leave — because leaving you means abandoning a version of themselves.</p></div>
+    </div>
+  </div>
+
+  <div style="background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 12px 16px; text-align: center;">
+    <p style="font-size: 14px; font-weight: 500; color: var(--color-text-primary); margin: 0 0 2px;">The one-liner to remember</p>
+    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 0;">Don't be relatable. Be <em>aspirationally proximate.</em></p>
+  </div>
+</div>

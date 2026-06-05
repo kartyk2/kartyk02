@@ -1,0 +1,37 @@
+{
+  "images": [
+    {
+      "file": "sample.jpg",
+      "caption": "Sample Image"
+    }
+  ],
+
+  "pages": [
+    {
+      "file": "aim_reference_card.html",
+      "title": "content strategy"
+    }
+  ],
+  "videos": [
+    {
+      "youtubeId": "aircAruvnKk",
+      "caption": "3Blue1Brown — Neural Networks"
+    }
+  ],
+
+  "pdfs": [
+    {
+      "file": "focus_plan.pdf",
+      "title": "Regaining Focus"
+    }
+  ],
+
+  "links": [
+    {
+      "title": "Example Resource",
+      "url": "https://example.com",
+      "description": "Example description",
+      "tags": ["example", "resource"]
+    }
+  ]
+}
