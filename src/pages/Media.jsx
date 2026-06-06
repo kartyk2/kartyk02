@@ -1,12 +1,9 @@
 import { useState } from 'react'
 import PdfEmbed from '../components/PdfEmbed'
-import Divider from '../components/Divider'
 import { PDFS, IMAGES, VIDEOS, LINKS } from '../data/content'
 import './Media.css'
 
 const TABS = ['PDFs', 'Images', 'Videos', 'Links']
-
-const TAG_COLOR = { tool: 'blue', learning: 'green', reference: 'amber' }
 
 export default function Media() {
   const [tab, setTab] = useState('PDFs')

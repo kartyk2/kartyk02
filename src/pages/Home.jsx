@@ -2,9 +2,24 @@ import { Link } from 'react-router-dom'
 import './Home.css'
 
 const SECTIONS = [
-  { to: '/dsa',      emoji: '⚙️', name: 'DSA Grind',       hint: 'Problems, topics, progress tracking.' },
-  { to: '/projects', emoji: '🛠',  name: 'Projects',        hint: 'Builds, experiments, shipped things.' },
-  { to: '/media',    emoji: '🗂',  name: 'Media & Docs',    hint: 'PDFs, images, videos, links.' },
+  {
+    to: "/revision",
+    emoji: "🧠",
+    name: "Revision Mapper",
+    hint: "Spaced repetition and knowledge tracking."
+  },
+  {
+    to: '/projects',
+    emoji: '🛠',
+    name: 'Projects',
+    hint: 'Builds, experiments, systems and software.'
+  },
+  {
+    to: '/media',
+    emoji: '📚',
+    name: 'Media & Docs',
+    hint: 'Notes, PDFs, journals, references and archives.'
+  }
 ]
 
 export default function Home() {
