@@ -64,3 +64,29 @@ A single place to manage:
 - Projects
 - Documentation
 - Reference material
+
+
+create table study_sessions (
+  id uuid primary key default gen_random_uuid(),
+  title text not null,
+  notes text,
+  duration integer,
+  study_date date not null,
+  created_at timestamptz default now()
+);
+
+create table session_tags (
+  id uuid primary key default gen_random_uuid(),
+  session_id uuid references study_sessions(id),
+  tag text not null
+);
+
+create table revisions (
+  id uuid primary key default gen_random_uuid(),
+  session_id uuid references study_sessions(id),
+  interval_days integer not null,
+  due_date date not null,
+  completed boolean default false
+);
+
+P0u2CeO8QbyiBRTO
